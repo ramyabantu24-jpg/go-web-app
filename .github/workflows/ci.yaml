@@ -75,18 +75,18 @@ jobs:
   needs: push
 
   steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
-    with:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-  - name: Update tag in Helm chart
-    run: |
-      sed -i 's/tag: .*/tag: "${{ github.run_id }}"/' helm/go-web-app-chart/values.yaml
+    - name: Update tag in Helm chart
+      run: |
+        sed -i 's/tag: .*/tag: "${{ github.run_id }}"/' helm/go-web-app-chart/values.yaml
 
-  - name: Commit and push changes
-    uses: ad-m/github-push-action@v0.8.0
-    with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      branch: main
-      message: "Update tag in Helm chart"
+    - name: Commit and push changes
+      uses: ad-m/github-push-action@v0.8.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+        message: "Update Helm chart tag to ${{ github.run_id }}"
