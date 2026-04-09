@@ -71,10 +71,10 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
 
   update-newtag-in-helm-chart:
-  runs-on: ubuntu-latest
-  needs: push
+   runs-on: ubuntu-latest
+   needs: push
 
-  steps:
+   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
