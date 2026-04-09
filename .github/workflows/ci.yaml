@@ -5,6 +5,8 @@ name: CI/CD
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 # Exclude the workflow to run on changes to the helm chart
 on:
@@ -25,10 +27,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Go 1.22
-      uses: actions/setup-go@v2
+    - name: Set up Go 
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.22
+        go-version: '1.22.x'
 
     - name: Build
       run: go build -o go-web-app
@@ -43,10 +45,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22.x'
+
     - name: Run golangci-lint
       uses: golangci/golangci-lint-action@v6
       with:
-        version: v1.56.2
+        version: latest
   
   push:
     runs-on: ubuntu-latest
