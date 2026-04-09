@@ -79,13 +79,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Update tag in Helm chart
       run: |
         sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/go-web-app-chart/values.yaml
 
     - name: Commit and push changes
+      uses: ad-m/github-push-action@v0.8.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+        message: "Update tag in Helm chart"
       run: |
         git config --global user.email "ramyabantu@gmail.com"
         git config --global user.name "ramyabantu24-jpg"
