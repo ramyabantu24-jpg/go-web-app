@@ -3,4 +3,4 @@ replicaCount: 1
 image:
  repository: banturamya/go-web-app
  pullPolicy: IfNotPresent
- tag: "24192195026"
+ tag: "24192889363"
