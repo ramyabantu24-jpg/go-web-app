@@ -18,4 +18,4 @@ spec:
       - name: go-web-app
         image: banturamya/go-web-app:{{ .Values.image.tag }}
         ports:
-        - containerPort: 8080
+        - containerPort: 9090
