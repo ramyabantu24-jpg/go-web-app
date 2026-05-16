@@ -10,6 +10,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/home.html")
 }
 
+
 func coursePage(w http.ResponseWriter, r *http.Request) {
 	// Render the course html page
 	http.ServeFile(w, r, "static/courses.html")
